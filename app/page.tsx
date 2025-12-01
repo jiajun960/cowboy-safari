@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Share2, Star, Settings, HelpCircle } from "lucide-react"
+import { Share2, Star, Settings, HelpCircle, ThumbsUp, ThumbsDown, Heart, Bug, Maximize } from "lucide-react"
 
 interface LanguageOption {
   code: string
@@ -108,23 +108,23 @@ export default function Home() {
   }
 
   return (
-    <main className="bg-gradient-to-b from-amber-50 to-white min-h-screen">
+    <div className="bg-gray-900 text-gray-300 min-h-screen">
       {/* Top Navigation */}
-      <nav className="sticky top-0 z-50 bg-white border-b border-amber-200 shadow-sm">
+      <nav className="sticky top-0 z-50 bg-gray-900 border-b border-gray-700 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-          <h1 className="text-xl md:text-2xl font-bold text-amber-900">🤠 Cowboy Safari</h1>
+          <h1 className="text-xl md:text-2xl font-bold text-white">🤠 Cowboy Safari</h1>
 
           <div className="flex items-center gap-2 md:gap-4">
             {/* Language Selector */}
             <div className="relative">
               <button
                 onClick={() => setShowLanguageMenu(!showLanguageMenu)}
-                className="px-3 py-1.5 text-xs md:text-sm bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-lg font-medium transition-colors"
+                className="px-3 py-1.5 text-xs md:text-sm bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg font-medium transition-colors"
               >
                 {selectedLanguage.toUpperCase()} ▾
               </button>
               {showLanguageMenu && (
-                <div className="absolute top-full mt-1 right-0 bg-white border border-amber-200 rounded-lg shadow-lg z-10">
+                <div className="absolute top-full mt-1 right-0 bg-gray-800 border border-gray-700 rounded-lg shadow-lg z-10">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
@@ -132,7 +132,7 @@ export default function Home() {
                         setSelectedLanguage(lang.code)
                         setShowLanguageMenu(false)
                       }}
-                      className="block w-full text-left px-4 py-2 text-sm hover:bg-amber-50 text-amber-900 first:rounded-t-lg last:rounded-b-lg"
+                      className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-700 text-gray-300 first:rounded-t-lg last:rounded-b-lg"
                     >
                       {lang.name}
                     </button>
@@ -142,77 +142,119 @@ export default function Home() {
             </div>
 
             {/* Settings Icon */}
-            <button className="p-2 hover:bg-amber-100 rounded-lg transition-colors" title="Settings">
-              <Settings size={20} className="text-amber-900" />
+            <button className="p-2 hover:bg-gray-800 rounded-lg transition-colors" title="Settings">
+              <Settings size={20} className="text-gray-300" />
             </button>
 
             {/* Help Icon */}
-            <button className="p-2 hover:bg-amber-100 rounded-lg transition-colors" title="How to Play">
-              <HelpCircle size={20} className="text-amber-900" />
+            <button className="p-2 hover:bg-gray-800 rounded-lg transition-colors" title="How to Play">
+              <HelpCircle size={20} className="text-gray-300" />
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="px-4 py-8 md:py-12 bg-gradient-to-r from-amber-400 via-orange-300 to-red-300 text-center">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-6 md:mb-8">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 drop-shadow-lg">Cowboy Safari</h1>
-            <p className="text-lg md:text-xl text-white drop-shadow mb-2">Ride. Lasso. Build.</p>
-            <p className="text-base md:text-lg text-white drop-shadow">
-              Quick runs, wild animals, long-term zoo upgrades. Play in your browser.
-            </p>
-          </div>
-
-          {/* Hero Bullets */}
-          <div className="grid md:grid-cols-3 gap-3 mb-8 max-w-3xl mx-auto text-white text-sm md:text-base">
-            <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg px-4 py-2">
-              🎮 Endless runner + animal taming + zoo building
-            </div>
-            <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg px-4 py-2">
-              🐴 Lasso zebras, buffalo, lions and more
-            </div>
-            <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg px-4 py-2">
-              ☁️ Build your Sky Zoo and upgrade habitats
-            </div>
-          </div>
-
-          {/* Primary CTA */}
-          <Button
-            size="lg"
-            className="bg-white text-amber-900 hover:bg-gray-100 font-bold text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all w-full md:w-auto mb-4"
-            onClick={() => alert("Game would launch here")}
-          >
-            ▶ Play Now — Free
-          </Button>
-        </div>
-      </section>
-
-      {/* Game Canvas Area (Placeholder) */}
-      <section className="px-4 py-8 md:py-12 bg-white max-w-6xl mx-auto">
-        <div className="bg-gradient-to-br from-slate-900 to-slate-700 rounded-2xl aspect-video flex items-center justify-center text-white text-center">
-          <div>
-            <div className="text-5xl mb-4">🎮</div>
-            <p className="text-lg font-semibold mb-2">Game Canvas</p>
-            <p className="text-gray-300 text-sm">HTML5 game iframe would load here</p>
+      {/* Game Canvas Area */}
+      <div className="max-w-6xl mx-auto">
+        {/* Game Title */}
+        <div className="title-box text-center" style={{ marginTop: '0.2cm', marginBottom: '0.2cm' }}>
+          <div className="title-game">
+            <h1>Cowboy Safari</h1>
           </div>
         </div>
-      </section>
+
+        {/* Game Container */}
+        <div className="aspect-video overflow-hidden mb-2">
+          <iframe
+            id="iframehtml5"
+            className="w-full h-full border-0"
+            title="Cowboy Safari"
+            src="https://gamea.azgame.io/cowboy-safari/"
+            allowFullScreen
+            style={{ display: 'block' }}
+          />
+        </div>
+
+        {/* Rating & Buttons Area */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          {/* Rating Section */}
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1">
+              {[...Array(4)].map((_, i) => (
+                <Star key={i} size={20} className="fill-amber-400 text-amber-400" />
+              ))}
+              <div className="relative inline-block">
+                <Star size={20} className="text-amber-400" />
+                <div className="absolute top-0 left-0 overflow-hidden" style={{ width: '50%' }}>
+                  <Star size={20} className="fill-amber-400 text-amber-400" />
+                </div>
+              </div>
+            </div>
+            <span className="text-sm md:text-base text-gray-300 font-medium">26 votes 4.6/5</span>
+          </div>
+
+          {/* Buttons Group */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => {}}
+              className="flex items-center gap-1 px-3 py-2 bg-[#8B4513] hover:bg-[#A0522D] text-white rounded-lg transition-colors text-sm md:text-base"
+              title="Like"
+            >
+              <ThumbsUp size={18} />
+              <span>46</span>
+            </button>
+            <button
+              onClick={() => {}}
+              className="p-2 bg-[#8B4513] hover:bg-[#A0522D] text-white rounded-lg transition-colors"
+              title="Dislike"
+            >
+              <ThumbsDown size={18} />
+            </button>
+            <button
+              onClick={() => {}}
+              className="p-2 bg-[#8B4513] hover:bg-[#A0522D] text-white rounded-lg transition-colors"
+              title="Favorite"
+            >
+              <Heart size={18} />
+            </button>
+            <button
+              onClick={() => {}}
+              className="p-2 bg-[#8B4513] hover:bg-[#A0522D] text-white rounded-lg transition-colors"
+              title="Share"
+            >
+              <Share2 size={18} />
+            </button>
+            <button
+              onClick={() => {}}
+              className="p-2 bg-[#8B4513] hover:bg-[#A0522D] text-white rounded-lg transition-colors"
+              title="Report Bug"
+            >
+              <Bug size={18} />
+            </button>
+            <button
+              onClick={() => {}}
+              className="p-2 bg-[#8B4513] hover:bg-[#A0522D] text-white rounded-lg transition-colors"
+              title="Fullscreen"
+            >
+              <Maximize size={18} />
+            </button>
+          </div>
+        </div>
+      </div>
 
       {/* How to Play Section */}
-      <section className="px-4 py-12 md:py-16 bg-gray-50">
+      <section className="px-4 py-12 md:py-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2 text-center">How to Play</h2>
-          <p className="text-gray-600 text-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 text-center">How to Play</h2>
+          <p className="text-gray-300 text-center mb-8">
             Start a run, lasso an animal, stay on while it bucks, then bring it home.
           </p>
 
           {/* Controls */}
           <div className="grid md:grid-cols-2 gap-6 mb-10">
-            <Card className="p-6 bg-white border-amber-200">
-              <h3 className="font-bold text-lg mb-4 text-amber-900">🖥️ Desktop / Tablet</h3>
-              <ul className="space-y-2 text-sm text-gray-700">
+            <Card className="p-6 bg-gray-800 border-gray-700">
+              <h3 className="font-bold text-lg mb-4 text-white">🖥️ Desktop / Tablet</h3>
+              <ul className="space-y-2 text-sm text-gray-300">
                 <li>
                   <span className="font-semibold">Space</span> = Jump / Action
                 </li>
@@ -225,9 +267,9 @@ export default function Home() {
               </ul>
             </Card>
 
-            <Card className="p-6 bg-white border-amber-200">
-              <h3 className="font-bold text-lg mb-4 text-amber-900">📱 Mobile Controls</h3>
-              <ul className="space-y-2 text-sm text-gray-700">
+            <Card className="p-6 bg-gray-800 border-gray-700">
+              <h3 className="font-bold text-lg mb-4 text-white">📱 Mobile Controls</h3>
+              <ul className="space-y-2 text-sm text-gray-300">
                 <li>
                   <span className="font-semibold">Tap</span> = Jump
                 </li>
@@ -253,13 +295,13 @@ export default function Home() {
               },
               { step: 4, title: "Return", desc: "Bring tamed animals back to your Sky Zoo for coins and upgrades." },
             ].map((item) => (
-              <div key={item.step} className="flex gap-4 p-4 bg-white rounded-lg border border-amber-200">
+              <div key={item.step} className="flex gap-4 p-4 bg-gray-800 rounded-lg border border-gray-700">
                 <div className="flex-shrink-0 w-8 h-8 bg-amber-400 text-white font-bold rounded-full flex items-center justify-center">
                   {item.step}
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-900">{item.title}</h4>
-                  <p className="text-gray-600 text-sm">{item.desc}</p>
+                  <h4 className="font-bold text-white">{item.title}</h4>
+                  <p className="text-gray-300 text-sm">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -268,26 +310,26 @@ export default function Home() {
       </section>
 
       {/* Other Games Section */}
-      <section className="px-4 py-12 md:py-16 bg-white">
+      <section className="px-4 py-12 md:py-16">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">More Games You'll Love</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">More Games You'll Love</h2>
 
           <div className="grid md:grid-cols-3 gap-4 md:gap-6">
             {otherGames.map((game) => (
               <Card
                 key={game.id}
-                className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border-amber-200 group"
+                className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer border-gray-700 bg-gray-800 group"
               >
                 <div className="bg-gradient-to-br from-amber-400 to-orange-400 h-32 md:h-40 flex items-center justify-center group-hover:scale-105 transition-transform">
                   <div className="text-5xl">🎮</div>
                 </div>
                 <div className="p-4">
-                  <h3 className="font-bold text-lg text-gray-900 mb-2">{game.title}</h3>
-                  <p className="text-gray-600 text-sm">{game.description}</p>
+                  <h3 className="font-bold text-lg text-white mb-2">{game.title}</h3>
+                  <p className="text-gray-300 text-sm">{game.description}</p>
                   <Button
                     variant="outline"
                     size="sm"
-                    className="w-full mt-4 border-amber-300 text-amber-900 hover:bg-amber-50 bg-transparent"
+                    className="w-full mt-4 border-gray-600 text-gray-300 hover:bg-gray-700 bg-transparent"
                   >
                     Play Now
                   </Button>
@@ -299,16 +341,16 @@ export default function Home() {
       </section>
 
       {/* Animal List Section */}
-      <section className="px-4 py-12 md:py-16 bg-gray-50">
+      <section className="px-4 py-12 md:py-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2 text-center">Animals in Cowboy Safari</h2>
-          <p className="text-gray-600 text-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 text-center">Animals in Cowboy Safari</h2>
+          <p className="text-gray-300 text-center mb-8">
             Lasso, tame, and collect a variety of wild animals for your Sky Zoo
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {animals.map((animal) => (
-              <Card key={animal} className="p-6 text-center border-amber-200 hover:bg-amber-50 transition-colors">
+              <Card key={animal} className="p-6 text-center border-gray-700 bg-gray-800 hover:bg-gray-700 transition-colors">
                 <div className="text-4xl mb-3">
                   {animal === "Zebra"
                     ? "🦓"
@@ -326,7 +368,7 @@ export default function Home() {
                                 ? "🦏"
                                 : "🐆"}
                 </div>
-                <p className="font-semibold text-gray-900">{animal}</p>
+                <p className="font-semibold text-white">{animal}</p>
               </Card>
             ))}
           </div>
@@ -334,17 +376,17 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section className="px-4 py-12 md:py-16 bg-white">
+      <section className="px-4 py-12 md:py-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">Frequently Asked Questions</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">Frequently Asked Questions</h2>
 
           <Accordion type="single" collapsible className="space-y-2">
             {faqItems.map((item, idx) => (
-              <AccordionItem key={idx} value={`item-${idx}`} className="border border-amber-200 rounded-lg px-4">
-                <AccordionTrigger className="text-base md:text-lg font-semibold text-gray-900 hover:text-amber-900 py-4">
+              <AccordionItem key={idx} value={`item-${idx}`} className="border border-gray-700 rounded-lg px-4 bg-gray-800">
+                <AccordionTrigger className="text-base md:text-lg font-semibold text-white hover:text-gray-300 py-4">
                   {item.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-700 pb-4">{item.a}</AccordionContent>
+                <AccordionContent className="text-gray-300 pb-4">{item.a}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
@@ -352,7 +394,7 @@ export default function Home() {
       </section>
 
       {/* Rating & Share Section */}
-      <section className="px-4 py-12 md:py-16 bg-gradient-to-r from-amber-50 to-orange-50">
+      <section className="px-4 py-12 md:py-16">
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-8">
             <div className="flex items-center justify-center gap-2 mb-4">
@@ -360,13 +402,13 @@ export default function Home() {
                 <Star
                   key={i}
                   size={28}
-                  className={i < Math.floor(rating) ? "fill-amber-400 text-amber-400" : "text-gray-300"}
+                  className={i < Math.floor(rating) ? "fill-amber-400 text-amber-400" : "text-gray-600"}
                 />
               ))}
             </div>
-            <p className="text-2xl font-bold text-gray-900 mb-2">{rating} / 5</p>
-            <p className="text-gray-600 mb-6">Based on 12,450+ player ratings</p>
-            <p className="text-gray-700 mb-6">Loved this run? Tap the stars to rate — help other players find it!</p>
+            <p className="text-2xl font-bold text-white mb-2">{rating} / 5</p>
+            <p className="text-gray-300 mb-6">Based on 12,450+ player ratings</p>
+            <p className="text-gray-300 mb-6">Loved this run? Tap the stars to rate — help other players find it!</p>
 
             <Button
               size="lg"
@@ -377,11 +419,11 @@ export default function Home() {
               Share Cowboy Safari
             </Button>
 
-            <div className="bg-white rounded-lg p-6 border border-amber-200 max-w-2xl mx-auto">
-              <p className="text-gray-700 mb-4">
+            <div className="bg-gray-800 rounded-lg p-6 border border-gray-700 max-w-2xl mx-auto">
+              <p className="text-gray-300 mb-4">
                 <span className="font-semibold">Suggested share lines:</span>
               </p>
-              <div className="space-y-3 text-sm text-gray-600">
+              <div className="space-y-3 text-sm text-gray-300">
                 <p className="italic">"Just tamed a lion in Cowboy Safari — try it free in your browser!"</p>
                 <p className="italic">
                   "Cowboy Safari is addictive. Lasso animals and build a floating zoo — play now!"
@@ -393,30 +435,30 @@ export default function Home() {
       </section>
 
       {/* Internal Pages Links (SEO) */}
-      <section className="px-4 py-12 md:py-16 bg-gray-50">
+      <section className="px-4 py-12 md:py-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Learn More</h2>
+          <h2 className="text-2xl font-bold text-white mb-6">Learn More</h2>
 
           <div className="grid md:grid-cols-3 gap-4 text-sm">
-            <Card className="p-4 border-amber-200 hover:shadow-md transition-shadow cursor-pointer">
-              <h3 className="font-bold text-amber-900 mb-2">Play Cowboy Safari Online Free</h3>
-              <p className="text-gray-600 text-xs">
+            <Card className="p-4 border-gray-700 bg-gray-800 hover:shadow-md transition-shadow cursor-pointer">
+              <h3 className="font-bold text-white mb-2">Play Cowboy Safari Online Free</h3>
+              <p className="text-gray-300 text-xs">
                 Play Cowboy Safari online for free — an HTML5 endless runner where you lasso animals and upgrade a
                 floating zoo. No install required.
               </p>
             </Card>
 
-            <Card className="p-4 border-amber-200 hover:shadow-md transition-shadow cursor-pointer">
-              <h3 className="font-bold text-amber-900 mb-2">How to Tame Animals</h3>
-              <p className="text-gray-600 text-xs">
+            <Card className="p-4 border-gray-700 bg-gray-800 hover:shadow-md transition-shadow cursor-pointer">
+              <h3 className="font-bold text-white mb-2">How to Tame Animals</h3>
+              <p className="text-gray-300 text-xs">
                 Tame animals by successfully riding them until their patience bar fills. Learn zebra timing, buffalo
                 stamina, and lion bursts.
               </p>
             </Card>
 
-            <Card className="p-4 border-amber-200 hover:shadow-md transition-shadow cursor-pointer">
-              <h3 className="font-bold text-amber-900 mb-2">Zones & Maps</h3>
-              <p className="text-gray-600 text-xs">
+            <Card className="p-4 border-gray-700 bg-gray-800 hover:shadow-md transition-shadow cursor-pointer">
+              <h3 className="font-bold text-white mb-2">Zones & Maps</h3>
+              <p className="text-gray-300 text-xs">
                 Unlock new regions like Savannah, Jungle and Mountain as you complete missions and collect coins.
               </p>
             </Card>
@@ -500,6 +542,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-    </main>
+    </div>
   )
 }
