@@ -4,20 +4,9 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Share2, Star, Settings, HelpCircle, ThumbsUp, ThumbsDown, Heart, Bug, Maximize } from "lucide-react"
-
-interface LanguageOption {
-  code: string
-  name: string
-}
-
-const languages: LanguageOption[] = [
-  { code: "en", name: "English" },
-  { code: "es", name: "Español" },
-  { code: "fr", name: "Français" },
-  { code: "ja", name: "日本語" },
-  { code: "zh", name: "中文" },
-]
+import { Share2, Star, ThumbsUp, ThumbsDown, Heart, Bug, Maximize } from "lucide-react"
+import Footer from "@/components/Footer"
+import Navigation from "@/components/Navigation"
 
 const otherGames = [
   {
@@ -75,8 +64,6 @@ const faqItems = [
 ]
 
 export default function Home() {
-  const [selectedLanguage, setSelectedLanguage] = useState<string>("en")
-  const [showLanguageMenu, setShowLanguageMenu] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [rating, setRating] = useState(4.6)
 
@@ -110,50 +97,7 @@ export default function Home() {
   return (
     <div className="bg-gray-900 text-gray-300 min-h-screen">
       {/* Top Navigation */}
-      <nav className="sticky top-0 z-50 bg-gray-900 border-b border-gray-700 shadow-sm">
-        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-          <h1 className="text-xl md:text-2xl font-bold text-white">🤠 Cowboy Safari</h1>
-
-          <div className="flex items-center gap-2 md:gap-4">
-            {/* Language Selector */}
-            <div className="relative">
-              <button
-                id="language-selector"
-                onClick={() => setShowLanguageMenu(!showLanguageMenu)}
-                className="px-3 py-1.5 text-xs md:text-sm bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg font-medium transition-colors"
-              >
-                {selectedLanguage.toUpperCase()} ▾
-              </button>
-              {showLanguageMenu && (
-                <div className="absolute top-full mt-1 right-0 bg-gray-800 border border-gray-700 rounded-lg shadow-lg z-10">
-                  {languages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      onClick={() => {
-                        setSelectedLanguage(lang.code)
-                        setShowLanguageMenu(false)
-                      }}
-                      className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-700 text-gray-300 first:rounded-t-lg last:rounded-b-lg"
-                    >
-                      {lang.name}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Settings Icon */}
-            <button id="settings-button" className="p-2 hover:bg-gray-800 rounded-lg transition-colors" title="Settings">
-              <Settings size={20} className="text-gray-300" />
-            </button>
-
-            {/* Help Icon */}
-            <button id="help-button" className="p-2 hover:bg-gray-800 rounded-lg transition-colors" title="How to Play">
-              <HelpCircle size={20} className="text-gray-300" />
-            </button>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Game Canvas Area */}
       <div className="max-w-6xl mx-auto">
@@ -250,7 +194,7 @@ export default function Home() {
       </div>
 
       {/* How to Play Section */}
-      <section className="px-4 py-12 md:py-16">
+      <section id="how-to-play" className="px-4 py-12 md:py-16">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 text-center">How to Play</h2>
           <p className="text-gray-300 text-center mb-8">
@@ -348,7 +292,7 @@ export default function Home() {
       </section>
 
       {/* Animal List Section */}
-      <section className="px-4 py-12 md:py-16">
+      <section id="animals" className="px-4 py-12 md:py-16">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-2 text-center">Animals in Cowboy Safari</h2>
           <p className="text-gray-300 text-center mb-8">
@@ -383,7 +327,7 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section className="px-4 py-12 md:py-16">
+      <section id="faq" className="px-4 py-12 md:py-16">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">Frequently Asked Questions</h2>
 
@@ -475,81 +419,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-300 px-4 py-8 md:py-12">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-6 mb-8">
-            <div>
-              <h4 className="font-bold text-white mb-4">Cowboy Safari</h4>
-              <p className="text-sm">Free browser game. Ride wild animals and build your Sky Zoo.</p>
-            </div>
-            <div>
-              <h4 className="font-bold text-white mb-4">Game</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="#" className="hover:text-amber-400">
-                    Play Game
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-amber-400">
-                    How to Play
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-amber-400">
-                    Leaderboards
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold text-white mb-4">Resources</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="#" className="hover:text-amber-400">
-                    FAQ
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-amber-400">
-                    Controls Guide
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-amber-400">
-                    Animals List
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold text-white mb-4">Legal</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="#" className="hover:text-amber-400">
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-amber-400">
-                    Terms of Service
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-amber-400">
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-700 pt-8 text-center text-sm">
-            <p className="mb-2">Available in English, Spanish, French, Japanese and Chinese</p>
-            <p className="text-gray-500">© 2025 Cowboy Safari. All rights reserved. Built with ❤️ for gamers.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

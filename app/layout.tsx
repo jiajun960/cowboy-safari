@@ -3,67 +3,76 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import Script from "next/script"
+import { headers } from "next/headers"
 import "./globals.css"
 
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 // <CHANGE> Updated metadata for Cowboy Safari game with SEO optimization
-export const metadata: Metadata = {
-  title: "Cowboy Safari - Play Free Online | Lasso & Tame Animals",
-  description:
-    "Ride wild animals, lasso beasts, and build your Sky Zoo. Play Cowboy Safari free in your browser - endless runner game with animal taming gameplay.",
-  keywords: "cowboy safari, free online game, browser game, animal taming, lasso game, endless runner",
-  applicationName: "Cowboy Safari",
-  robots: "index, follow",
-  alternates: {
-    canonical: "https://cowboysafari.buzz/",
-  },
-  openGraph: {
-    title: "Cowboy Safari - Ride Wild Animals & Build Your Sky Zoo",
-    description: "Free browser game. Lasso animals, ride them, and upgrade your floating zoo. Play now!",
-    type: "website",
-    locale: "en_US",
-    url: "https://cowboysafari.buzz",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Cowboy Safari Game",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Cowboy Safari - Play Free",
-    description: "Lasso wild animals and build your Sky Zoo. Free browser game.",
-    creator: "@cowboysafari",
-  },
-  generator: "v0.app",
-  icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
-  },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  const headersList = await headers()
+  // Always use https for canonical URL (production URL)
+  // x-forwarded-proto is set by middleware, but canonical should always be https for production domain
+  const proto = 'https'
+  const pathname = headersList.get('x-pathname') || '/'
+  
+  return {
+    title: "Cowboy Safari - Play Free Online | Lasso & Tame Animals",
+    description:
+      "Ride wild animals, lasso beasts, and build your Sky Zoo. Play Cowboy Safari free in your browser - endless runner game with animal taming gameplay.",
+    keywords: "cowboy safari, free online game, browser game, animal taming, lasso game, endless runner",
+    applicationName: "Cowboy Safari",
+    robots: "index, follow",
+    alternates: {
+      canonical: `${proto}://cowboysafari.buzz${pathname}`,
+    },
+    openGraph: {
+      title: "Cowboy Safari - Ride Wild Animals & Build Your Sky Zoo",
+      description: "Free browser game. Lasso animals, ride them, and upgrade your floating zoo. Play now!",
+      type: "website",
+      locale: "en_US",
+      url: "https://cowboysafari.buzz",
+      images: [
+        {
+          url: "/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: "Cowboy Safari Game",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Cowboy Safari - Play Free",
+      description: "Lasso wild animals and build your Sky Zoo. Free browser game.",
+      creator: "@cowboysafari",
+    },
+    generator: "v0.app",
+    icons: {
+      icon: [
+        {
+          url: "/icon-light-32x32.png",
+          media: "(prefers-color-scheme: light)",
+        },
+        {
+          url: "/icon-dark-32x32.png",
+          media: "(prefers-color-scheme: dark)",
+        },
+        {
+          url: "/icon.svg",
+          type: "image/svg+xml",
+        },
+      ],
+      apple: "/apple-icon.png",
+    },
+    viewport: {
+      width: "device-width",
+      initialScale: 1,
+      maximumScale: 5,
+      userScalable: true,
+    },
+  }
 }
 
 export default function RootLayout({
