@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   keywords: "cowboy safari, free online game, browser game, animal taming, lasso game, endless runner",
   applicationName: "Cowboy Safari",
   robots: "index, follow",
+  alternates: {
+    canonical: "https://cowboysafari.buzz/",
+  },
   openGraph: {
     title: "Cowboy Safari - Ride Wild Animals & Build Your Sky Zoo",
     description: "Free browser game. Lasso animals, ride them, and upgrade your floating zoo. Play now!",
