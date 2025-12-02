@@ -117,6 +117,12 @@ export default function RootLayout({
             })(window, document, "clarity", "script", "uenpazr184");
           `}
         </Script>
+        {/* Ahrefs Analytics */}
+        <Script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="pq8wObY7BKVdAXCFC+hRuA"
+          strategy="afterInteractive"
+        />
       </head>
       <body className={`font-sans antialiased`}>
         {children}
