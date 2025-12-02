@@ -118,6 +118,7 @@ export default function Home() {
             {/* Language Selector */}
             <div className="relative">
               <button
+                id="language-selector"
                 onClick={() => setShowLanguageMenu(!showLanguageMenu)}
                 className="px-3 py-1.5 text-xs md:text-sm bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg font-medium transition-colors"
               >
@@ -142,12 +143,12 @@ export default function Home() {
             </div>
 
             {/* Settings Icon */}
-            <button className="p-2 hover:bg-gray-800 rounded-lg transition-colors" title="Settings">
+            <button id="settings-button" className="p-2 hover:bg-gray-800 rounded-lg transition-colors" title="Settings">
               <Settings size={20} className="text-gray-300" />
             </button>
 
             {/* Help Icon */}
-            <button className="p-2 hover:bg-gray-800 rounded-lg transition-colors" title="How to Play">
+            <button id="help-button" className="p-2 hover:bg-gray-800 rounded-lg transition-colors" title="How to Play">
               <HelpCircle size={20} className="text-gray-300" />
             </button>
           </div>
@@ -196,6 +197,7 @@ export default function Home() {
           {/* Buttons Group */}
           <div className="flex items-center gap-2">
             <button
+              id="like-button"
               onClick={() => {}}
               className="flex items-center gap-1 px-3 py-2 bg-[#8B4513] hover:bg-[#A0522D] text-white rounded-lg transition-colors text-sm md:text-base"
               title="Like"
@@ -204,6 +206,7 @@ export default function Home() {
               <span>46</span>
             </button>
             <button
+              id="dislike-button"
               onClick={() => {}}
               className="p-2 bg-[#8B4513] hover:bg-[#A0522D] text-white rounded-lg transition-colors"
               title="Dislike"
@@ -211,6 +214,7 @@ export default function Home() {
               <ThumbsDown size={18} />
             </button>
             <button
+              id="favorite-button"
               onClick={() => {}}
               className="p-2 bg-[#8B4513] hover:bg-[#A0522D] text-white rounded-lg transition-colors"
               title="Favorite"
@@ -218,6 +222,7 @@ export default function Home() {
               <Heart size={18} />
             </button>
             <button
+              id="share-button"
               onClick={() => {}}
               className="p-2 bg-[#8B4513] hover:bg-[#A0522D] text-white rounded-lg transition-colors"
               title="Share"
@@ -225,6 +230,7 @@ export default function Home() {
               <Share2 size={18} />
             </button>
             <button
+              id="report-bug-button"
               onClick={() => {}}
               className="p-2 bg-[#8B4513] hover:bg-[#A0522D] text-white rounded-lg transition-colors"
               title="Report Bug"
@@ -232,6 +238,7 @@ export default function Home() {
               <Bug size={18} />
             </button>
             <button
+              id="fullscreen-button"
               onClick={() => {}}
               className="p-2 bg-[#8B4513] hover:bg-[#A0522D] text-white rounded-lg transition-colors"
               title="Fullscreen"
@@ -411,6 +418,7 @@ export default function Home() {
             <p className="text-gray-300 mb-6">Loved this run? Tap the stars to rate — help other players find it!</p>
 
             <Button
+              id="main-share-button"
               size="lg"
               className="bg-amber-500 hover:bg-amber-600 text-white font-bold mb-6"
               onClick={handleShare}
