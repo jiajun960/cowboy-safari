@@ -28,11 +28,11 @@ export async function generateMetadata(): Promise<Metadata> {
       canonical: `${proto}://cowboysafari.buzz${pathname}`,
     },
     openGraph: {
+      url: `${proto}://cowboysafari.buzz${pathname}`,
       title: "Cowboy Safari - Ride Wild Animals & Build Your Sky Zoo",
       description: "Free browser game. Lasso animals, ride them, and upgrade your floating zoo. Play now!",
       type: "website",
       locale: "en_US",
-      url: "https://cowboysafari.buzz",
       images: [
         {
           url: "/og-image.png",
@@ -93,15 +93,15 @@ export default function RootLayout({
               name: "Cowboy Safari",
               description: "Free browser-based endless runner with animal taming and zoo building mechanics",
               url: "https://cowboysafari.buzz",
-              gameServer: "HTML5 Browser",
+              operatingSystem: "Web Browser",
+              gamePlatform: ["Web Browser", "HTML5"],
               playMode: "SinglePlayer",
-              applicationCategory: "Game",
               aggregateRating: {
                 "@type": "AggregateRating",
-                ratingValue: "4.6",
-                bestRating: "5",
-                worstRating: "1",
-                ratingCount: "12450",
+                ratingValue: 4.6,
+                bestRating: 5,
+                worstRating: 1,
+                ratingCount: 12450,
               },
             }),
           }}

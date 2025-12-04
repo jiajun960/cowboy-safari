@@ -8,12 +8,21 @@ export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers()
   // Always use https for canonical URL (production URL)
   const proto = 'https'
+  const baseUrl = `${proto}://cowboysafari.buzz`
+  const pathname = '/terms'
+  const canonicalUrl = `${baseUrl}${pathname}`
   
   return {
     title: "Terms of Service - Cowboy Safari",
     description: "Read the terms of service for Cowboy Safari. Understand your rights and responsibilities when playing our free browser game.",
     alternates: {
-      canonical: `${proto}://cowboysafari.buzz/terms`,
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      url: canonicalUrl,
+      title: "Terms of Service - Cowboy Safari",
+      description: "Read the terms of service for Cowboy Safari. Understand your rights and responsibilities when playing our free browser game.",
+      type: "website",
     },
   }
 }
@@ -118,6 +127,20 @@ export default function Terms() {
           <section className="pt-4">
             <p className="mt-6 text-amber-400 font-medium">
               Thanks for visiting Cowboy Safari and have fun exploring the game!
+            </p>
+          </section>
+
+          <section className="pt-4 border-t border-gray-700">
+            <h2 className="text-2xl font-bold text-white mb-4">Related Information</h2>
+            <p className="mb-4 text-gray-300">
+              For questions about these terms, please{' '}
+              <Link href="/contact" className="text-amber-400 hover:text-amber-500 underline">
+                contact us
+              </Link>.
+              {' '}Learn more about how we handle your data in our{' '}
+              <Link href="/privacy" className="text-amber-400 hover:text-amber-500 underline">
+                Privacy Policy
+              </Link>.
             </p>
           </section>
         </div>

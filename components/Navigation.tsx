@@ -25,9 +25,9 @@ export default function Navigation() {
     <nav className="sticky top-0 z-50 bg-gray-900 border-b border-gray-700 shadow-sm">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <Link href="/">
-          <h1 className="text-xl md:text-2xl font-bold text-white cursor-pointer hover:text-amber-400 transition-colors">
+          <div className="text-xl md:text-2xl font-bold text-white cursor-pointer hover:text-amber-400 transition-colors">
             🤠 Cowboy Safari
-          </h1>
+          </div>
         </Link>
 
         <div className="flex items-center gap-2 md:gap-4">

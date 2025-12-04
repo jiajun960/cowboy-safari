@@ -11,7 +11,7 @@ export default function Footer() {
             <h4 className="font-bold text-white mb-4">Game</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="/#" className="hover:text-amber-400">
+                <a href="/" className="hover:text-amber-400">
                   Play Game
                 </a>
               </li>

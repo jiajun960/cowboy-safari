@@ -8,12 +8,21 @@ export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers()
   // Always use https for canonical URL (production URL)
   const proto = 'https'
+  const baseUrl = `${proto}://cowboysafari.buzz`
+  const pathname = '/contact'
+  const canonicalUrl = `${baseUrl}${pathname}`
   
   return {
     title: "Contact Us - Cowboy Safari",
-    description: "Get in touch with Cowboy Safari. Have questions, feedback, or need support? We're here to help!",
+    description: "Get in touch with Cowboy Safari. Have questions, feedback, or need support? Contact us via email and we'll respond within 24-48 hours. We're here to help!",
     alternates: {
-      canonical: `${proto}://cowboysafari.buzz/contact`,
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      url: canonicalUrl,
+      title: "Contact Us - Cowboy Safari",
+      description: "Get in touch with Cowboy Safari. Have questions, feedback, or need support? Contact us via email and we'll respond within 24-48 hours. We're here to help!",
+      type: "website",
     },
   }
 }
@@ -67,6 +76,20 @@ export default function Contact() {
             </p>
             <p className="mt-6 text-amber-400 font-medium">
               Thanks for playing and for reaching out!
+            </p>
+          </section>
+
+          <section className="pt-4 border-t border-gray-700">
+            <h2 className="text-2xl font-bold text-white mb-4">Related Information</h2>
+            <p className="mb-4 text-gray-300">
+              For more information about how we handle your data, please see our{' '}
+              <Link href="/privacy" className="text-amber-400 hover:text-amber-500 underline">
+                Privacy Policy
+              </Link>
+              {' '}and{' '}
+              <Link href="/terms" className="text-amber-400 hover:text-amber-500 underline">
+                Terms of Service
+              </Link>.
             </p>
           </section>
         </div>

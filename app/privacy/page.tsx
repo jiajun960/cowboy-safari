@@ -8,12 +8,21 @@ export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers()
   // Always use https for canonical URL (production URL)
   const proto = 'https'
+  const baseUrl = `${proto}://cowboysafari.buzz`
+  const pathname = '/privacy'
+  const canonicalUrl = `${baseUrl}${pathname}`
   
   return {
     title: "Privacy Policy - Cowboy Safari",
     description: "Learn how Cowboy Safari handles your information. We are transparent about data collection, cookies, analytics, and third-party services.",
     alternates: {
-      canonical: `${proto}://cowboysafari.buzz/privacy`,
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      url: canonicalUrl,
+      title: "Privacy Policy - Cowboy Safari",
+      description: "Learn how Cowboy Safari handles your information. We are transparent about data collection, cookies, analytics, and third-party services.",
+      type: "website",
     },
   }
 }
@@ -89,6 +98,21 @@ export default function Privacy() {
             </p>
             <p className="text-amber-400 font-medium">
               Thanks for being part of the ride!
+            </p>
+          </section>
+
+          <section className="pt-4 border-t border-gray-700">
+            <h2 className="text-2xl font-bold text-white mb-4">Related Information</h2>
+            <p className="mb-4 text-gray-300">
+              For questions about our privacy practices, please{' '}
+              <Link href="/contact" className="text-amber-400 hover:text-amber-500 underline">
+                contact us
+              </Link>.
+              {' '}You can also review our{' '}
+              <Link href="/terms" className="text-amber-400 hover:text-amber-500 underline">
+                Terms of Service
+              </Link>
+              {' '}to understand your rights and responsibilities when using Cowboy Safari.
             </p>
           </section>
         </div>

@@ -16,15 +16,20 @@ export function middleware(request: NextRequest) {
   // Skip HTTPS redirect in development environment
   const isDevelopment = process.env.NODE_ENV === 'development' || url.hostname === 'localhost'
   
-  // HTTP → HTTPS redirect (301 Permanent) - Only in production
-  if (!isDevelopment && url.protocol === 'http:') {
-    url.protocol = 'https:'
+  // Optimize redirects: Handle www → non-www + HTTPS in one redirect to avoid redirect chains
+  // This handles cases like: http://www.cowboysafari.buzz → https://cowboysafari.buzz (single redirect)
+  if (url.hostname.startsWith('www.')) {
+    url.hostname = url.hostname.replace('www.', '')
+    if (!isDevelopment) {
+      url.protocol = 'https:'
+    }
     return NextResponse.redirect(url, 301)
   }
   
-  // www → non-www redirect (301 Permanent)
-  if (url.hostname.startsWith('www.')) {
-    url.hostname = url.hostname.replace('www.', '')
+  // HTTP → HTTPS redirect (301 Permanent) - Only in production
+  // This handles cases like: http://cowboysafari.buzz → https://cowboysafari.buzz
+  if (!isDevelopment && url.protocol === 'http:') {
+    url.protocol = 'https:'
     return NextResponse.redirect(url, 301)
   }
   
